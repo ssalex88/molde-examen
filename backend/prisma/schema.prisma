@@ -1,0 +1,29 @@
+// ✍️ LAS TABLAS
+// 🔗 Los campos salen del FRONTEND (los inputs del formulario / lo que manda el fetch).
+// ⚠️ Si cambias algo: npx prisma migrate dev --name cambio  +  npx prisma generate
+
+// 🔴 Estas 7 líneas no se tocan
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// 🟢 Tus tablas. Tipos: String · Int · Boolean · DateTime @default(now()) · Decimal @db.Decimal(10, 2)
+//    Opcional: String?   ·   No repetir: @unique
+
+model Usuario {                                   // → prisma.usuario
+  id       Int    @id @default(autoincrement())   // la BD pone el id
+  usuario  String @unique
+  password String
+}
+
+model Videojuego {                                // → prisma.videojuego
+  id         Int    @id                           // sin autoincrement: el id lo escribe el usuario en el form
+  nombre     String
+  sinopsis   String
+  categoria  String
+  url_imagen String
+}

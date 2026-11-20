@@ -1,0 +1,21 @@
+# 📋 COPIAR · Base de datos PostgreSQL
+# docker compose up -d   (prender)   ·   docker compose down   (apagar)
+# 🟢 cambiar · 🔴 no tocar · 🔗 tiene que coincidir con otro archivo
+
+name: molde-examen                  # 🟢 nombre del proyecto (uno por proyecto)
+
+services:
+  postgres:                         # 🔴
+    image: postgres:18              # 🔴
+    container_name: molde-pg        # 🟢 único en tu PC
+    environment:
+      POSTGRES_USER: postgres       # 🔴
+      POSTGRES_PASSWORD: postgres   # 🔴
+      POSTGRES_DB: videojuegos      # 🟢 nombre de la BD              🔗 .env (final de DATABASE_URL)
+    ports:
+      - "5436:5432"                 # 🟢 solo el IZQUIERDO (libre)    🔗 .env (puerto de DATABASE_URL)
+    volumes:
+      - pgdata:/var/lib/postgresql  # 🔴
+
+volumes:
+  pgdata:                           # 🔴
